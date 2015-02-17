@@ -73,6 +73,9 @@ public class BadgeGui {
         p.setColor(colors.get(frame.getShapeColor()));
         p.setBgcolor(colors.get(frame.getBgColor()));
         p.setShape(frame.getShapeText());
+        p.setStringX(frame.getShapeWidth());
+        p.setStringY(frame.getShapeHeight());
+
         frame.draw(p);
     }
     
