@@ -28,6 +28,9 @@ public class BadgeGui {
      */
        
     public BadgeGui(){
+        
+        p = new Parameters();
+        
         colors.put("blue", Color.blue);
         colors.put("black", Color.black);
         colors.put("cyan", Color.cyan);
@@ -57,14 +60,20 @@ public class BadgeGui {
                 draw();
             }
         });
+        
+        frame.addShapeActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                draw();
+            }
+        });
 
     }
 
     public void draw(){
-        System.out.println(frame.getShapeColor());
-        color = colors.get(frame.getShapeColor());
-        bgColor = colors.get(frame.getBgColor());
-        frame.draw(color, bgColor);
+        p.setColor(colors.get(frame.getShapeColor()));
+        p.setBgcolor(colors.get(frame.getBgColor()));
+        p.setShape(frame.getShapeText());
+        frame.draw(p);
     }
     
     public static void main(String[] args) {
