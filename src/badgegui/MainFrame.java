@@ -7,10 +7,10 @@
 package badgegui;
 
 import java.awt.*;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
-
+import java.text.*;
 
 /**
  *
@@ -18,10 +18,7 @@ import java.util.*;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    
-    Color shapeColor;
-    Color bgColor;
-    
+    Font f;
     Parameters params;
     /**
      * Creates new form MainFrame
@@ -40,6 +37,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         shapeGroup = new javax.swing.ButtonGroup();
+        fontGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -56,6 +54,15 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        jRadioButton6 = new javax.swing.JRadioButton();
+        jRadioButton7 = new javax.swing.JRadioButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        nameField = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField(NumberFormat.getIntegerInstance());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,6 +121,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         shapeGroup.add(jRadioButton1);
+        jRadioButton1.setSelected(true);
         jRadioButton1.setText("Rectangle");
 
         shapeGroup.add(jRadioButton2);
@@ -148,15 +156,13 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(shapeHeight)
                             .addComponent(shapeWidth)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
                                 .addComponent(jRadioButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton2))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jLabel5)))
+                                .addComponent(jRadioButton2)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton3)
@@ -180,20 +186,95 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(shapeHeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        fontGroup.add(jRadioButton4);
+        jRadioButton4.setSelected(true);
+        jRadioButton4.setText("Plain");
+
+        fontGroup.add(jRadioButton5);
+        jRadioButton5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jRadioButton5.setText("Bold");
+
+        fontGroup.add(jRadioButton6);
+        jRadioButton6.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jRadioButton6.setText("Italic");
+
+        fontGroup.add(jRadioButton7);
+        jRadioButton7.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jRadioButton7.setText("Bold Italic");
+
+        jLabel6.setText("Font Style");
+
+        jLabel7.setText("Font Size");
+
+        nameField.setText("Default");
+        nameField.setToolTipText("");
+        nameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nameFieldKeyTyped(evt);
+            }
+        });
+
+        jLabel8.setText("Name to Display");
+
+        jFormattedTextField1.setText("14");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel8))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jRadioButton4)
+                                .addGap(10, 10, 10)
+                                .addComponent(jRadioButton5)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRadioButton6)
+                                .addGap(10, 10, 10)
+                                .addComponent(jRadioButton7))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jLabel7)
+                                .addGap(26, 26, 26)
+                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nameField)
+                .addGap(30, 30, 30))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 127, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton4)
+                    .addComponent(jRadioButton5)
+                    .addComponent(jRadioButton6)
+                    .addComponent(jRadioButton7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -222,11 +303,15 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void nameFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFieldKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameFieldKeyTyped
 
      
     public void addColorActionListener(ActionListener listener){
@@ -241,6 +326,17 @@ public class MainFrame extends javax.swing.JFrame {
         jRadioButton1.addActionListener(listener);
         jRadioButton2.addActionListener(listener);
         jRadioButton3.addActionListener(listener);
+    }
+    
+    public void addFontActionListener(ActionListener listener){
+        jRadioButton4.addActionListener(listener);
+        jRadioButton5.addActionListener(listener);
+        jRadioButton6.addActionListener(listener);
+        jRadioButton7.addActionListener(listener);
+    }
+    
+    public void addNameListener(KeyListener e){
+        nameField.addKeyListener(e);
     }
     
     public String getShapeColor(){
@@ -263,6 +359,14 @@ public class MainFrame extends javax.swing.JFrame {
         return shapeHeight.getText();
     }
     
+    public String getFontText(){
+        return getSelectedButtonText(fontGroup);
+    }
+    
+    public String getName(){
+        return nameField.getText();
+    }
+    
     public String getSelectedButtonText(ButtonGroup buttonGroup) {
         for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
             AbstractButton button = buttons.nextElement();
@@ -276,14 +380,8 @@ public class MainFrame extends javax.swing.JFrame {
     }
         
     public void draw(Parameters p){
-         shapeColor = p.getColor();
-         bgColor = p.getBgcolor();
-         
-         params = p;
-                 
-//        shapeColor = c;
-//        bgColor = bg;
-         
+
+        params = p;
         paintComponent(jPanel1.getGraphics());
     }
     /**
@@ -347,17 +445,32 @@ public class MainFrame extends javax.swing.JFrame {
             g2.drawOval(d.width/2-(x/2),d.height/2-(y/2),x,y);
         }
         
+        f = new Font("Arial", params.getFtstyle(), 12);
+
+        g2.setFont(f);
+
+        FontMetrics fm = g.getFontMetrics();
+        int nameX = d.width/2 - fm.stringWidth(params.getName())/2;
+        int nameY = d.height/2 + fm.getDescent();
+        
+        g2.drawString(params.getName(), nameX, nameY);
+        
         
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup fontGroup;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -365,6 +478,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JRadioButton jRadioButton7;
+    private javax.swing.JTextField nameField;
     private javax.swing.ButtonGroup shapeGroup;
     private javax.swing.JTextField shapeHeight;
     private javax.swing.JTextField shapeWidth;

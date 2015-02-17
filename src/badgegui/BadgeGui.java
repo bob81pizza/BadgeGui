@@ -45,9 +45,10 @@ public class BadgeGui {
         colors.put("white", Color.white);
         colors.put("yellow", Color.yellow);
 
-        fonts.put("REGULAR", Font.PLAIN);
-        fonts.put("BOLD", Font.BOLD);
-        fonts.put("ITALIC", Font.ITALIC);
+        fonts.put("Plain", Font.PLAIN);
+        fonts.put("Bold", Font.BOLD);
+        fonts.put("Italic", Font.ITALIC);
+        fonts.put("Bold Italic", Font.BOLD+Font.ITALIC);
                
         frame.addColorActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
@@ -66,6 +67,30 @@ public class BadgeGui {
                 draw();
             }
         });
+        
+        frame.addFontActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                draw();
+            }
+        });
+        
+        frame.addNameListener(new KeyListener(){
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                draw();
+            }
+        });
 
     }
 
@@ -75,6 +100,8 @@ public class BadgeGui {
         p.setShape(frame.getShapeText());
         p.setStringX(frame.getShapeWidth());
         p.setStringY(frame.getShapeHeight());
+        p.setFtstyle(fonts.get(frame.getFontText()));
+        p.setName(frame.getName());
 
         frame.draw(p);
     }

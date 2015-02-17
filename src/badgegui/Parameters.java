@@ -7,6 +7,7 @@
 package badgegui;
 
 import java.awt.Color;
+import java.awt.Font;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Parameters {
     private Color bgcolor;
     private String stringX;
     private String stringY;
-    private String ftstyle;
+    private Integer ftstyle;
     private String ftsizeString;
 
     /**
@@ -107,20 +108,6 @@ public class Parameters {
     }
 
     /**
-     * @return the ftstyle
-     */
-    public String getFtstyle() {
-        return ftstyle;
-    }
-
-    /**
-     * @param ftstyle the ftstyle to set
-     */
-    public void setFtstyle(String ftstyle) {
-        this.ftstyle = ftstyle;
-    }
-
-    /**
      * @return the ftsizeString
      */
     public String getFtsizeString() {
@@ -133,4 +120,19 @@ public class Parameters {
     public void setFtsizeString(String ftsizeString) {
         this.ftsizeString = ftsizeString;
     }
+
+    /**
+     * @return the ftstyle
+     */
+    public Integer getFtstyle() {
+        return ftstyle;
+    }
+
+    /**
+     * @param ftstyle the ftstyle to set
+     */
+    public void setFtstyle(Integer ftstyle) {
+        this.ftstyle = ftstyle;
+    }
+
 }
