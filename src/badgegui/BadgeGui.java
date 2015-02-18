@@ -91,6 +91,21 @@ public class BadgeGui {
                 draw();
             }
         });
+        
+        frame.addNumberListener(new FocusListener(){
+
+            @Override
+            public void focusGained(FocusEvent e) {
+                draw();
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                draw();
+            }
+            
+        });
+       
 
     }
 
@@ -101,6 +116,7 @@ public class BadgeGui {
         p.setStringX(frame.getShapeWidth());
         p.setStringY(frame.getShapeHeight());
         p.setFtstyle(fonts.get(frame.getFontText()));
+        p.setFtsizeString(frame.getFontSize());
         p.setName(frame.getName());
 
         frame.draw(p);
