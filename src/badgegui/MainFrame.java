@@ -71,7 +71,6 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(198, 242, 243));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -157,18 +156,17 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(40, 40, 40)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addGap(36, 36, 36)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(shapeHeight)
                             .addComponent(shapeWidth)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -264,7 +262,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel7)
-                        .addGap(30, 30, 30)
+                        .addGap(18, 18, 18)
                         .addComponent(fontSize, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -283,15 +281,15 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(jRadioButton5)
                     .addComponent(jRadioButton6)
                     .addComponent(jRadioButton7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(5, 5, 5)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(fontSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         messageArea.setEditable(false);
@@ -366,7 +364,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -497,6 +495,8 @@ public class MainFrame extends javax.swing.JFrame {
         int x=175, y=100, ftSize=12;
         Graphics2D g2 = (Graphics2D)g;
         ArrayList<String> errors = new ArrayList<String>();
+        boolean errorFlag = false;
+
         try{
             x = Integer.parseInt(params.getStringX());
 
@@ -530,6 +530,16 @@ public class MainFrame extends javax.swing.JFrame {
         //Make Background
         g2.fillRect(d.width/2-(250/2),d.height/2-(150/2),250,150);
         
+        if(x>250){
+            errors.add("Please enter a shape width less than 250 pixels");
+            x=175;
+            shapeWidth.setText(Integer.toString(x));
+        }
+        if(y>150){
+            errors.add("Please enter a shape height less than 150 pixels");
+            y=100;
+            shapeHeight.setText(Integer.toString(y));
+        }
         //Make Shape
         g2.setColor(params.getColor());
         if(params.getShape().equals("Rectangle")){
@@ -554,16 +564,28 @@ public class MainFrame extends javax.swing.JFrame {
         
         if(fm.stringWidth(params.getName())>x || (fm.getAscent())>y){
             errors.add("Text is too big!!");
+            errorFlag = true;
         }
-        
+        else{
+            errorFlag = false;
+        }
+
         if(errors.size()>0){
             String errorString = "";
             for(String s: errors){
                     errorString += s+"\n";
             }
             messageArea.setText(errorString);
+
         }
-        errors.removeAll(errors);
+
+        if(errorFlag == false && messageArea.getText().equals("Text is too big!!\n")){
+            System.out.println(messageArea.getText());
+            messageArea.setText("");
+            
+        }
+        errors.clear();
+        
         
         
     }
