@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+//Chris Martin and Maggie Shipley
 
 package badgegui;
 
@@ -492,7 +493,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     public void paintComponent(Graphics g){
-        int x=175, y=100, ftSize=12;
+        int x=175, y=100, ftSize=14;
         Graphics2D g2 = (Graphics2D)g;
         ArrayList<String> errors = new ArrayList<String>();
         boolean errorFlag = false;

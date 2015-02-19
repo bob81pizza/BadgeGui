@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+//Chris Martin and Maggie Shipley
 
 package badgegui;
 
@@ -18,7 +19,7 @@ import java.util.Map;
 public class BadgeGui {
 
     private final MainFrame frame = new MainFrame();
-    private Parameters p;
+    private static Parameters p;
     Map<String, Color> colors = new HashMap();
     Map<String, Integer> fonts = new HashMap();
     Color color;
@@ -126,6 +127,22 @@ public class BadgeGui {
         // TODO code application logic here
         BadgeGui app = new BadgeGui();
         app.frame.setVisible(true);
+
+        p.setBgcolor(Color.BLACK);
+        p.setColor(Color.CYAN);
+        p.setFtsizeString("14");
+        p.setShape("Rectangle");
+        p.setFtstyle(Font.PLAIN);
+        p.setStringX("175");
+        p.setStringY("100");
+        p.setName("Default");
+        try{
+            Thread.sleep(500);
+            app.frame.draw(p);
+        }
+        catch(InterruptedException ex){
+            Thread.currentThread().interrupt();
+        }
     }
     
 }
