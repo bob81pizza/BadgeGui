@@ -399,6 +399,9 @@ public class MainFrame extends javax.swing.JFrame {
     
     public void addNameListener(KeyListener e){
         nameField.addKeyListener(e);
+        shapeWidth.addKeyListener(e);
+        shapeHeight.addKeyListener(e);
+        fontSize.addKeyListener(e);
     }
     
     public void addNumberListener(FocusListener e){
@@ -581,14 +584,11 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         if(errorFlag == false && messageArea.getText().equals("Text is too big!!\n")){
-            System.out.println(messageArea.getText());
             messageArea.setText("");
             
         }
-        errors.clear();
-        
-        
-        
+        errors.clear();    
+                
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
